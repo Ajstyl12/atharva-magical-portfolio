@@ -1,0 +1,857 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cinzel-dec: "Cinzel Decorative", "Cinzel", Georgia, serif;
+    --font-medieval: "MedievalSharp", cursive;
+    --font-fell: "IM Fell English", Georgia, serif;
+    --font-uncial: "Uncial Antiqua", cursive;
+    --font-cinzel: "Cinzel", Georgia, serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --font-sans: "Plus Jakarta Sans", sans-serif;
+
+    /* Dynamic House Variables (Default Gryffindor) */
+    --house-primary: #DC2626;
+    --house-secondary: #D4AF37;
+    --house-accent: #D4AF37;
+    --house-border: #DC2626;
+    --house-glow: rgba(220, 38, 38, 0.5);
+    --house-card-bg: #0A0A0F;
+    --house-text-highlight: #FDE047;
+  }
+
+  /* NOX / Pure Dark Mode (Hogwarts Midnight Pitch Canvas) */
+  body.theme-nox {
+    background-color: #000000;
+    color: #F8FAFC;
+  }
+
+  /* LUMOS / Pure HD Crisp White Mode (High Contrast HD Canvas) */
+  body.theme-lumos {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+
+  /* Custom high-contrast scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  
+  body.theme-nox ::-webkit-scrollbar-track {
+    background: #050508;
+  }
+  body.theme-nox ::-webkit-scrollbar-thumb {
+    background: #22222A;
+    border: 1px solid var(--house-border);
+    border-radius: 2px;
+  }
+  body.theme-nox ::-webkit-scrollbar-thumb:hover {
+    background: var(--house-secondary);
+  }
+
+  body.theme-lumos ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+  body.theme-lumos ::-webkit-scrollbar-thumb {
+    background: #94A3B8;
+    border: 1px solid #000000;
+    border-radius: 2px;
+  }
+  body.theme-lumos ::-webkit-scrollbar-thumb:hover {
+    background: var(--house-primary);
+  }
+
+  /* ═══════════════════════════════════════════
+     CUSTOM ENCHANTED WAND CURSOR
+     ═══════════════════════════════════════════ */
+  html, body {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M2 2 L12 12 L28 28 L27 29 L11 13 L1 3 Z' fill='%2363391A' stroke='%23221207' stroke-width='0.8'/%3E%3Cpath d='M16 16 L28 28' stroke='%23D4AF37' stroke-width='1.5'/%3E%3Ccircle cx='2' cy='2' r='2.5' fill='%23FFE066'/%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23FFFFFF'/%3E%3Cpath d='M2 0 L2 4 M0 2 L4 2' stroke='%23FFD700' stroke-width='0.75'/%3E%3C/svg%3E") 2 2, auto !important;
+  }
+
+  button, a, input, textarea, select, [role="button"], .cursor-pointer {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M2 2 L12 12 L28 28 L27 29 L11 13 L1 3 Z' fill='%238B5A2B' stroke='%23221207' stroke-width='0.8'/%3E%3Cpath d='M16 16 L28 28' stroke='%23FFD700' stroke-width='1.5'/%3E%3Ccircle cx='2' cy='2' r='4.5' fill='%23FFD700' opacity='0.75'/%3E%3Ccircle cx='2' cy='2' r='2' fill='%23FFFFFF'/%3E%3Cpath d='M2 -2 L2 6 M-2 2 L6 2 M-1 -1 L5 5 M-1 5 L5 -1' stroke='%23FFF8DC' stroke-width='1'/%3E%3C/svg%3E") 2 2, pointer !important;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   PREMIUM GLASSMORPHISM DESIGN SYSTEM
+   Ultra-clear translucent glass panels with
+   crisp borders, backdrop blur, and high contrast
+   ═══════════════════════════════════════════ */
+
+.glass-card-lumos {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.glass-card-nox {
+  background: rgba(10, 10, 16, 0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-sub-lumos {
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.glass-sub-nox {
+  background: rgba(18, 18, 26, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-header-lumos {
+  background: rgba(251, 249, 244, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.glass-header-nox {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.glass-dock-lumos {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.glass-dock-nox {
+  background: rgba(8, 8, 12, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Wizarding Typography Classes */
+.font-cinzel-dec {
+  font-family: var(--font-cinzel-dec);
+}
+
+.font-medieval {
+  font-family: var(--font-medieval);
+}
+
+.font-fell {
+  font-family: var(--font-fell);
+}
+
+.font-uncial {
+  font-family: var(--font-uncial);
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-mono-runes {
+  font-family: var(--font-mono);
+}
+
+.font-sans-body {
+  font-family: var(--font-sans);
+}
+
+/* Aged Parchment Noise & Newsprint Grain - Completely Cleaned */
+.bg-parchment-nox {
+  background-color: #000000;
+  background-image: none !important;
+}
+
+.bg-parchment-lumos {
+  background-color: #FFFFFF;
+  background-image: none !important;
+}
+
+/* House Accent Overlays & Dynamic Styles */
+body.house-gryffindor {
+  --house-primary: #DC2626;
+  --house-secondary: #D4AF37;
+  --house-accent: #D4AF37;
+  --house-border: #DC2626;
+  --house-glow: rgba(220, 38, 38, 0.5);
+}
+
+body.theme-lumos.house-gryffindor {
+  --house-primary: #8B0000;
+  --house-secondary: #78350F;
+  --house-accent: #991B1B;
+  --house-border: #8B0000;
+  --house-glow: rgba(139, 0, 0, 0.4);
+}
+
+body.house-ravenclaw {
+  --house-primary: #0284C7;
+  --house-secondary: #C99E58;
+  --house-accent: #38BDF8;
+  --house-border: #0284C7;
+  --house-glow: rgba(56, 189, 248, 0.5);
+}
+
+body.theme-lumos.house-ravenclaw {
+  --house-primary: #0C4A6E;
+  --house-secondary: #78350F;
+  --house-accent: #0369A1;
+  --house-border: #0C4A6E;
+  --house-glow: rgba(12, 74, 110, 0.4);
+}
+
+body.house-slytherin {
+  --house-primary: #10B981;
+  --house-secondary: #94A3B8;
+  --house-accent: #34D399;
+  --house-border: #10B981;
+  --house-glow: rgba(16, 185, 129, 0.5);
+}
+
+body.theme-lumos.house-slytherin {
+  --house-primary: #065F46;
+  --house-secondary: #0F172A;
+  --house-accent: #047857;
+  --house-border: #065F46;
+  --house-glow: rgba(6, 95, 70, 0.4);
+}
+
+body.house-hufflepuff {
+  --house-primary: #F59E0B;
+  --house-secondary: #EAB308;
+  --house-accent: #FDE047;
+  --house-border: #F59E0B;
+  --house-glow: rgba(245, 158, 11, 0.5);
+}
+
+body.theme-lumos.house-hufflepuff {
+  --house-primary: #92400E;
+  --house-secondary: #451A03;
+  --house-accent: #B45309;
+  --house-border: #92400E;
+  --house-glow: rgba(146, 64, 14, 0.4);
+}
+
+/* B&W to Vibrant Color Magical Hover Effect for Portraits */
+.magical-portrait-bw {
+  filter: grayscale(100%) contrast(110%) brightness(95%);
+  transition: filter 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter, transform;
+}
+
+.magical-portrait-bw:hover {
+  filter: grayscale(0%) contrast(105%) brightness(100%);
+  transform: scale(1.035);
+  box-shadow: 0 0 35px var(--house-glow, rgba(212, 175, 55, 0.6));
+}
+
+/* Magical Shimmer & Moving Portrait Sheen */
+@keyframes moving-portrait {
+  0% {
+    filter: sepia(15%) contrast(110%) brightness(95%);
+    transform: scale(1);
+  }
+  50% {
+    filter: sepia(30%) contrast(115%) brightness(105%);
+    transform: scale(1.015);
+  }
+  100% {
+    filter: sepia(15%) contrast(110%) brightness(95%);
+    transform: scale(1);
+  }
+}
+
+.animate-moving-portrait {
+  animation: moving-portrait 8s ease-in-out infinite;
+}
+
+/* Floating Golden Snitch Glow */
+@keyframes snitch-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+.animate-snitch {
+  animation: snitch-float 4s ease-in-out infinite;
+}
+
+/* Wax Seal Stamp */
+.wax-seal {
+  background: radial-gradient(circle at 35% 35%, #BE123C 0%, #881337 70%, #4C0519 100%);
+  box-shadow: 0 4px 15px rgba(136, 19, 55, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  border: 2px solid #9F1239;
+}
+
+.wax-seal-gold {
+  background: radial-gradient(circle at 35% 35%, #FDE047 0%, #D4AF37 60%, #854D0E 100%);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  border: 2px solid #CA8A04;
+}
+
+.wax-seal-emerald {
+  background: radial-gradient(circle at 35% 35%, #34D399 0%, #059669 70%, #064E3B 100%);
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  border: 2px solid #047857;
+}
+
+.wax-seal-sapphire {
+  background: radial-gradient(circle at 35% 35%, #38BDF8 0%, #0284C7 70%, #0C4A6E 100%);
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  border: 2px solid #0369A1;
+}
+
+/* Marauder Ink Spread Keyframe */
+@keyframes inkSpread {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.85;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.animate-ink-spread {
+  animation: inkSpread 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   Sections fade in from below as they enter
+   the viewport and fade out when leaving.
+   ═══════════════════════════════════════════ */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delay variants for child elements */
+.scroll-reveal-delay-1 { transition-delay: 0.1s; }
+.scroll-reveal-delay-2 { transition-delay: 0.2s; }
+.scroll-reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Directional variants */
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale-up variant (for images/portraits) */
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Override: disable ALL scroll animations instantly */
+.no-scroll-animation .scroll-reveal,
+.no-scroll-animation .scroll-reveal-left,
+.no-scroll-animation .scroll-reveal-right,
+.no-scroll-animation .scroll-reveal-scale {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ═══════════════════════════════════════════
+   DIMENSIONAL PORTALS & FLOO NETWORK ANIMATIONS
+   ═══════════════════════════════════════════ */
+
+@keyframes portal-vortex-cw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portal-vortex-ccw {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes portal-pulse-core {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+    filter: drop-shadow(0 0 15px var(--house-glow));
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+    filter: drop-shadow(0 0 28px var(--house-glow)) drop-shadow(0 0 45px var(--house-secondary));
+  }
+}
+
+@keyframes portal-spark-rise {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-35px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes portal-hologram-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes portal-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.portal-vortex-slow {
+  animation: portal-vortex-cw 18s linear infinite;
+}
+
+.portal-vortex-reverse {
+  animation: portal-vortex-ccw 14s linear infinite;
+}
+
+.portal-core-pulsing {
+  animation: portal-pulse-core 3s ease-in-out infinite;
+}
+
+.portal-float-hover {
+  animation: portal-float 4s ease-in-out infinite;
+}
+
+.portal-card-base {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.portal-card-base:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.portal-shimmer-effect {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: portal-hologram-shimmer 4s infinite;
+}
+
+/* ═══════════════════════════════════════════
+   CIRCULAR DIMENSIONAL PORTALS & FLAME WAVES
+   ═══════════════════════════════════════════ */
+
+@keyframes portal-flame-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 25px currentColor) drop-shadow(0 0 50px currentColor);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08) rotate(180deg);
+    filter: drop-shadow(0 0 45px currentColor) drop-shadow(0 0 85px currentColor);
+    opacity: 1;
+  }
+}
+
+@keyframes portal-wave-expand {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+    border-width: 3px;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes portal-wave-expand-delayed {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+    border-width: 4px;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes portal-flame-tongues {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.06) skewX(2deg);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.96) skewY(-2deg);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.08) skewX(-2deg);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes portal-energy-swirl-fast {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portal-teleport-shockwave {
+  0% {
+    transform: scale(0.9);
+    filter: brightness(1);
+  }
+  30% {
+    transform: scale(1.2);
+    filter: brightness(3) contrast(1.5);
+    box-shadow: 0 0 100px 50px currentColor;
+  }
+  60% {
+    transform: scale(0.85);
+    filter: brightness(2);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Circular Portal Orb Components */
+.circular-portal-container {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.circular-portal-container:hover {
+  transform: translateY(-10px) scale(1.03);
+}
+
+.portal-flame-corona {
+  animation: portal-flame-tongues 10s linear infinite;
+}
+
+.portal-flame-core {
+  animation: portal-flame-pulse 4s ease-in-out infinite;
+}
+
+.portal-wave-ring-1 {
+  animation: portal-wave-expand 3s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+.portal-wave-ring-2 {
+  animation: portal-wave-expand-delayed 3.6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite 1.2s;
+}
+
+.portal-teleport-active {
+  animation: portal-teleport-shockwave 0.8s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════
+   ULTRA HIGH-CONTRAST TYPOGRAPHY SYSTEM
+   Ensures 100% pure crisp white in Nox Mode
+   and 100% pure pitch black in Lumos Mode
+   ═══════════════════════════════════════════ */
+
+body.theme-nox {
+  color: #FFFFFF !important;
+}
+
+body.theme-nox h1,
+body.theme-nox h2,
+body.theme-nox h3,
+body.theme-nox h4,
+body.theme-nox h5,
+body.theme-nox h6 {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+body.theme-nox p,
+body.theme-nox .font-sans-body,
+body.theme-nox .font-fell {
+  color: #F8FAFC !important;
+}
+
+body.theme-nox .font-mono-runes {
+  color: #F1F5F9 !important;
+}
+
+/* ═══════════════════════════════════════════
+   LUMOS MODE PURE PITCH BLACK (#000000) TEXT OVERRIDE
+   Ensures 100% crisp, dark, high-contrast text across all sections in Light Mode
+   ═══════════════════════════════════════════ */
+
+body.theme-lumos {
+  color: #000000 !important;
+}
+
+body.theme-lumos,
+body.theme-lumos p,
+body.theme-lumos h1:not(.text-transparent),
+body.theme-lumos h2:not(.text-transparent),
+body.theme-lumos h3:not(.text-transparent),
+body.theme-lumos h4:not(.text-transparent),
+body.theme-lumos h5:not(.text-transparent),
+body.theme-lumos h6:not(.text-transparent),
+body.theme-lumos span:not(.text-transparent):not(.bg-clip-text):not(.badge-white-text),
+body.theme-lumos div:not(.text-transparent):not(.bg-clip-text),
+body.theme-lumos a:not(.text-transparent),
+body.theme-lumos label,
+body.theme-lumos input,
+body.theme-lumos textarea,
+body.theme-lumos select,
+body.theme-lumos li,
+body.theme-lumos td,
+body.theme-lumos th,
+body.theme-lumos .font-sans-body,
+body.theme-lumos .font-fell,
+body.theme-lumos .font-mono-runes,
+body.theme-lumos .font-cinzel,
+body.theme-lumos .font-cinzel-dec:not(.text-transparent) {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+/* Force Tailwind muted slate text classes to pure pitch black in Lumos mode */
+body.theme-lumos .text-slate-400,
+body.theme-lumos .text-slate-500,
+body.theme-lumos .text-slate-600,
+body.theme-lumos .text-slate-700,
+body.theme-lumos .text-slate-800,
+body.theme-lumos .text-slate-900,
+body.theme-lumos .text-slate-200,
+body.theme-lumos .text-slate-300,
+body.theme-lumos .text-gray-400,
+body.theme-lumos .text-gray-500,
+body.theme-lumos .text-gray-600,
+body.theme-lumos .text-gray-700,
+body.theme-lumos .text-gray-800,
+body.theme-lumos .text-amber-900,
+body.theme-lumos .text-amber-950 {
+  color: #000000 !important;
+}
+
+/* Preserve transparent background-clip gradients in both Nox & Lumos modes */
+.text-transparent,
+.bg-clip-text,
+.magical-title-gradient {
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* Lumos Mode Card & Panel contrast boosts */
+body.theme-lumos .glass-card-lumos {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.theme-lumos .glass-sub-lumos {
+  background: rgba(248, 250, 252, 0.96) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ═══════════════════════════════════════════
+   MAGICAL HERO TITLE ANIMATIONS & SPARKLES
+   ═══════════════════════════════════════════ */
+
+@keyframes magical-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes magical-aura-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 2px 12px rgba(255, 255, 255, 0.25)) drop-shadow(0 0 25px rgba(255, 46, 77, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 2px 20px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 45px rgba(255, 199, 44, 0.55));
+  }
+}
+
+@keyframes magical-twinkle-sparkle {
+  0%, 100% {
+    transform: scale(0.6) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.25) rotate(180deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+@keyframes magical-float-gentle {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.08);
+  }
+}
+
+.magical-title-gradient {
+  background-size: 200% 200% !important;
+  animation: magical-gradient-shift 5s ease-in-out infinite;
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  transition: filter 0.5s ease;
+}
+
+.magical-title-gradient:hover {
+  animation-duration: 2.5s;
+}
+
+.magical-text-white {
+  color: #FFFFFF !important;
+  transition: all 0.5s ease;
+}
+
+.magical-aura-pulse {
+  animation: magical-aura-pulse 4s ease-in-out infinite;
+}
+
+.magical-float {
+  animation: magical-float-gentle 6s ease-in-out infinite;
+}
+
+.magical-sparkle-star {
+  animation: magical-twinkle-sparkle var(--twinkle-speed, 3s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+/* ═══════════════════════════════════════════
+   MARAUDER'S LOADER — COLOR ISOLATION
+   Prevents Lumos mode overrides from bleeding
+   into the loading screen's forced dark palette
+   ═══════════════════════════════════════════ */
+
+/* Shimmer sweep on progress bar */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* Gentle continuous spin */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Ensure the fixed loader overlay ignores all theme-lumos overrides */
+body.theme-lumos .loader-isolation,
+body.theme-lumos .loader-isolation *,
+body.theme-lumos .loader-isolation p,
+body.theme-lumos .loader-isolation h1,
+body.theme-lumos .loader-isolation span,
+body.theme-lumos .loader-isolation button,
+body.theme-lumos .loader-isolation div {
+  color: inherit !important;
+  text-shadow: inherit !important;
+}
+
